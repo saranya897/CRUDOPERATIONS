@@ -1,0 +1,66 @@
+<!DOCTYPE html>  
+<html lang="en">  
+<head>  
+    <meta charset="UTF-8">  
+    <title>Employee Records</title>  
+     {% load staticfiles %}  
+    <link rel="stylesheet" href="{% static 'css/style.css' %}"/>
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.10.22/css/jquery.dataTables.min.css" />
+  
+    <!-- CSS only -->
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
+    <!-- JavaScript Bundle with Popper -->
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.5.1.js">
+     </script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-U1DAWAznBHeqEIlVSCgzq+c9gqGAJn5c/t99JyeKa9xxaYpSvHU5awsuZVVFIhvj" crossorigin="anonymous"></script>
+<script type="text/javascript" src="https://cdn.datatables.net/1.10.22/js/jquery.dataTables.min.js">
+     </script>
+</head>  
+<body>  
+<table id='tableID' class="table table-striped table-bordered table-sm">  
+    <thead class="thead-dark">  
+    <tr>  
+        <th>Employee ID</th>  
+        <th>Employee Name</th>  
+        <th>Employee Email</th>  
+        <th>Employee Contact</th>  
+        <th>Actions</th>  
+    </tr>  
+    </thead>  
+    <tbody>  
+{% for employee in employees %}  
+    <tr>  
+        <td>{{ employee.eid }}</td>  
+        <td>{{ employee.ename }}</td>  
+        <td>{{ employee.eemail }}</td>  
+        <td>{{ employee.econtact }}</td>  
+        <td>  
+            <a href="/edit/{{ employee.id }}"><span class="glyphicon glyphicon-pencil" >Edit</span></a>  
+            <a href="/delete/{{ employee.id }}">Delete</a>  
+        </td>  
+    </tr>  
+{% endfor %}
+  
+    </tbody>
+    {% comment %} <tfoot>
+    <tr>  
+        <th>Employee ID</th>  
+        <th>Employee Name</th>  
+        <th>Employee Email</th>  
+        <th>Employee Contact</th>  
+        <th>Actions</th>  
+    </tr>
+</tfoot>    {% endcomment %}
+</table>
+<script>
+  
+        /* Initialization of datatable */
+        $(document).ready(function() {
+            $('#tableID').DataTable({ });
+        });
+    </script>  
+<br>  
+<br>  
+<center><a href="/emp" class="btn btn-primary">Add New Record</a></center>  
+</body>  
+</html>  
